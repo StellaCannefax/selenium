@@ -15,13 +15,15 @@ namespace OpenQA.Selenium
         [IgnoreBrowser(Browser.HtmlUnit, "scrolling requires rendering")]
         public void ClickingOnAnchorScrollsPage()
         {
-            string scrollScript = "var pageY;";
-            scrollScript += "if (typeof(window.pageYOffset) == 'number') {";
-            scrollScript += "pageY = window.pageYOffset;";
-            scrollScript += "} else {";
-            scrollScript += "pageY = document.documentElement.scrollTop;";
-            scrollScript += "}";
-            scrollScript += "return pageY;";
+            string scrollScript = @"
+                var pageY;
+                if (typeof(window.pageYOffset) == 'number') {                  
+                    pageY = window.pageYOffset;
+                } else {
+                    pageY = document.documentElement.scrollTop;
+                }
+                return pageY;
+            ";
 
             driver.Url = macbethPage;
 
